@@ -1,12 +1,4 @@
-/*
- Inspired by the lightbox plugin adapted to jquery by Leandro Vieira Pinho (http://leandrovieira.com)
- 
- @author  : Nicolas Turlais : nicolas-at-insipi.de
- @version : V0.3.1 - June 2012
- @license : Licensed under CCAttribution-ShareAlike
- @website : http://chocolat.insipi.de
- 
-*/
+
 (function($) {
 	images = [];
 	var calls = 0;
@@ -38,7 +30,7 @@
 		settings.setIndex = calls;
 		images[settings.setIndex] = [];
 		
-		//images:
+		
 		this.each(function(index){
 			if(index == 0 && settings.linkImages && settings.setTitle == ''){
 				settings.setTitle = isSet($(this).attr('rel'), ' ');
@@ -58,7 +50,7 @@
 			})
 		});
 		
-		//setIndex:
+		
 		for(var i = 0; i < images[settings.setIndex].length; i++)
 		{
 			if(images[settings.setIndex]['displayAsALink']){
@@ -68,7 +60,7 @@
 				$('#'+settings.linksContainer).append('<li><a href="#" id="Choco_numsetIndex_'+settings.setIndex+'" class="Choco_link">'+settings.setTitle+'</a></li>');
 				e = this.parent();
 				$(this).remove();
-				if($.trim(e.html()) == ""){//If parent empty : remove it
+				if($.trim(e.html()) == ""){
 					e.remove();
 				}
 				return $('#Choco_numsetIndex_'+settings.setIndex).unbind('click').bind('click', {id: settings.setIndex, nom : settings.setTitle, i : settings.currentImage}, _initialise);
@@ -85,7 +77,7 @@
 			return false;
 		}
 		function _interface(){
-			//html
+			
 			clear();
 			settings.container.append('<div id="Choco_overlay"></div><div id="Choco_content"><div id="Choco_close"></div><div id="Choco_loading"></div><div id="Choco_container_photo"><img id="Choco_bigImage" src="" /></div><div id="Choco_container_description"><span id="Choco_container_title"></span><span id="Choco_container_via"></span></div><div id="Choco_left_arrow" class="Choco_arrows"></div><div id="Choco_right_arrow" class="Choco_arrows"></div></div>');	
 			$('#Choco_left_arrow').css('background-image', 'url('+settings.leftImg+')');  
@@ -97,7 +89,7 @@
 				$('#Choco_content').css('position','relative');
 				$('#Choco_overlay').css('position', 'absolute');
 			}
-			//events
+			
 			$(document).unbind('keydown').bind('keydown', function(e){
 				switch(e.keyCode){
 					case 37:
@@ -196,7 +188,7 @@
 				if(!resize)
 				{
 					arrowsManaging();
-					//$('#Choco_container_description').fadeTo(settings.fadeInImageduration,1); making a weird bug with firefox 17
+					
 					$('#Choco_container_description').css('visibility','visible');
 					$('#Choco_close').fadeIn(settings.fadeInImageduration);
 				}
@@ -236,7 +228,7 @@
 			$('#Choco_container_via').html(settings.setTitle+settings.separator1+current +settings.separator2+last);
 		}
 		function isSet(variable,defaultValue){
-			// return variable === undefined ? defaultValue : variable; ?
+			
 			if (variable === undefined) {
 				return defaultValue;
 			}
@@ -245,7 +237,7 @@
 			}
 		}
 		function iWantThePerfectImageSize(himg,limg){
-			//28% = 14% + 14% margin
+			
 			var lblock             = limg + (limg*28/100);
 			var heightDescAndClose = $('#Choco_container_description').height()+$('#Choco_close').height();
 			var hblock             = himg + heightDescAndClose;
